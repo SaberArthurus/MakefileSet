@@ -1,0 +1,11 @@
+srcs := $(wildcard *.cpp)
+objects := $(patsubst %.cpp, %.o, $(srcs))
+CC := g++
+
+all: $(objects)
+	@echo $(objects)
+$(objects): %.o:%.cpp
+	$(CC) -c $< -o $@
+.PHONY: clean
+clean:
+	-rm -f $(objects)
