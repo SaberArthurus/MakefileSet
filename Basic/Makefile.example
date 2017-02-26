@@ -1,0 +1,19 @@
+all: main othermain
+.PHONY: all
+objects = book.o student.o
+main: $(objects) main.o
+	g++ -o main $(objects) main.o
+othermain: $(objects) othermain.o
+	g++ -o othermain $(objects) othermain.o
+
+main.o : book.h student.h
+	g++ -c main.cpp
+othermain.o: book.h student.h
+	g++ -c othermain.cpp
+book.o : book.h
+	g++ -c book.cpp
+student.o: student.h
+	g++ -c student.cpp
+.PHONY : clean
+clean:
+	rm -f *.o main othermain
